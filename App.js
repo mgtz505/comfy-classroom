@@ -13,15 +13,20 @@ export default function App() {
   
 const [isOpen, setIsOpen] = useState(false)
 
+const [displayToggle, setDisplayToggle] = useState(false);
+
+function displayClass() {
+  setDisplayToggle(!displayToggle)
+}
 
   return (
     <Container>
       <View>
-        <HeaderBar title="Comfy Classroom" />
+        <HeaderBar title="Comfy Classroom"/>
       </View>
         <Welcome />   
       <View style={styles.container}>
-        <StudentAdd />
+        <StudentAdd props={displayToggle}/>
       </View>
 
     </Container>

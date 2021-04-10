@@ -13,9 +13,7 @@ const HeaderBar = (props) => {
     return (
         <View style={styles.header}>
         <Left>
-            {/* <Button transparent style={styles.menuButton}>
-                <Icon name='menu' />
-            </Button> */}
+           
         </Left>
             <Text style={styles.headerTitle}>{props.title}</Text>
         </View>

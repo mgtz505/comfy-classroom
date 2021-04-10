@@ -1,5 +1,5 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import { setStatusBarBackgroundColor, StatusBar } from "expo-status-bar";
+import React, { useState, useLayoutEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -19,18 +19,35 @@ const StudentAdd = (props) => {
 //Handle the Text input for listed student additions:
 const [listStudent, setlistStudent] = useState("");
 const [classRoster, setClassRoster] = useState([]);
+const [studentStatus, setStudentStatus] = useState("");
+const [emotionalStatus, setEmotionalStatus] = useState("")
+
+const [isAddMode, setIsAddMode]=useState(false);
+
+//Handle the use of the student list
 function studentListHandler(name){
     setlistStudent(name);
 }
 //Handle the use of the add button
 function handleButtonPress(){
-    setClassRoster(classRoster => [...classRoster, listStudent]);
+    setClassRoster(classRoster => [...classRoster, {key: Math.random(), value: listStudent}]);
 };
 
+function designateStatus(){
+  setStudentStatus()
+}
 
+function handleEmotionalStatus(){
+  Alert.alert(
+    "Yolo"
+  )
+  setEmotionalStatus("Anxious")
+
+}
+//Alert Function (on rendered student press)
 function showAlert() {
     Alert.alert(
-      "YOLO"
+      <Text>"YOLO"</Text>
     )
   }
 
@@ -40,12 +57,20 @@ function showAlert() {
       <Content>
         <Grid>
         <Col style={{ backgroundColor: 'white', height: 200 }}>
-        <Button iconLeft full light onPress={handleButtonPress} style={styles.addButton}>
-            <Text>Add a Student</Text>
-            <Icon name="home"/> 
+        <Button style={styles.addButton} 
+        iconLeft full light onPress={handleButtonPress} 
+        style={styles.addButton}>
+            <Icon name="home"> 
+            <Text>Add Student</Text>
+            </Icon>
           </Button>
-          <TextInput style={styles.input} placeholder="Student Name..." onChangeText={studentListHandler} value={listStudent}/>
-          
+          <TextInput style={styles.input} 
+          placeholder="Student Name..." 
+          onChangeText={studentListHandler} 
+          value={listStudent}/>
+          <Button>
+            <Text>See the Class</Text>
+          </Button>
 
         </Col>
         <Col style={{ backgroundColor: '#00CE9F', height: 200 }}>
@@ -56,18 +81,54 @@ function showAlert() {
 
         <View>
         <FlatList data={classRoster} renderItem={studentData => (
-            <TouchableOpacity onPress={showAlert}>
-                <View style={styles.listedStudents}><Text>{studentData.item}</Text></View>
+            <TouchableOpacity onPress={handleEmotionalStatus}>
+                <View key={studentData.item.name} style={styles.listedStudents}>
+                  <Text>{studentData.item.value} - {emotionalStatus}</Text>
+                  <Button onPress={ () => setIsAddMode(true)}>
+                    <Text>Set Status</Text>
+                  </Button>
+                </View>
             </TouchableOpacity>
         ) }/>
           {/* {classRoster.map((student) => )} */}
       </View>
+
+      <View style={styles.modalContainer}>
+        <Modal 
+        visible={isAddMode}
+        animationType="slide"
+        >
+          <View>
+            
+            <Text>Student Name </Text>
+
+            <Button iconLeft style={styles.modalButton} onPress={ () => setIsAddMode(false)}>
+              <Icon name='home'>
+              <Text> Home</Text>
+              </Icon>
+            </Button>
+          </View>
+        </Modal>
+      </View>
+        
+      
       </Content>
     </Container>
   );
 };
 
 const styles = StyleSheet.create({
+  
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  modalButton: {
+    alignSelf: 'center',
+    marginTop: '180%',
+    width: '35%',
+    },
   addContainer: {
       alignItems: 'center',
       justifyContent: 'center',
@@ -77,7 +138,7 @@ const styles = StyleSheet.create({
       height: '30%',
       marginLeft: '0%',
       backgroundColor: "#347905",
-      width: '100%'
+      width: '100%',
 
   },
  
