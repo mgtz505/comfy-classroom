@@ -19,22 +19,7 @@ const [isOpen, setIsOpen] = useState(false)
       <View>
         <HeaderBar title="Comfy Classroom" />
       </View>
-        <Welcome />
-
-      {/* <Header>
-       <Left>
-        <Button transparent>
-          <Icon name='menu' />
-        </Button>
-       </Left>
-       <Right>
-         <Button rounded onPress={() => setIsOpen(true)} >
-           <Text>USER</Text>
-         </Button>
-       </Right>
-      </Header> */}
-     
-      
+        <Welcome />   
       <View style={styles.container}>
         <StudentAdd />
       </View>

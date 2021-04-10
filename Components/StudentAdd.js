@@ -7,9 +7,12 @@ import {
   View,
   TouchableOpacity,
   Modal,
-  FlatList
+  FlatList,
+  Alert
 } from "react-native";
-import { Container, Header, Left, Right, Button, List, ListItem, Icon } from "native-base";
+import { Container, Content, Header, Left, Right, Button, List, ListItem, Icon, } from "native-base";
+import { Col, Row, Grid } from 'react-native-easy-grid';
+
 
 const StudentAdd = (props) => {
 
@@ -24,32 +27,66 @@ function handleButtonPress(){
     setClassRoster(classRoster => [...classRoster, listStudent]);
 };
 
+
+function showAlert() {
+    Alert.alert(
+      "YOLO"
+    )
+  }
+
+
   return (
-    <View style={styles.addContainer}>
-      <Button full light onPress={handleButtonPress} style={styles.addButton}>
-        <Text>Add a Student</Text>
-      </Button>
-      <TextInput style={styles.input} placeholder="Enter Student Name..." onChangeText={studentListHandler} value={listStudent}/>
-      <FlatList data={classRoster} renderItem={studentData => (
-          <TouchableOpacity onPress={styles.listedMediumStudents}>
-              <View style={styles.listedStudents}><Text>{studentData.item}</Text></View>
-          </TouchableOpacity>
-      ) }/>
-        {/* {classRoster.map((student) => )} */}
-    </View>
+    <Container>
+      <Content>
+        <Grid>
+        <Col style={{ backgroundColor: 'white', height: 200 }}>
+        <Button iconLeft full light onPress={handleButtonPress} style={styles.addButton}>
+            <Text>Add a Student</Text>
+            <Icon name="home"/> 
+          </Button>
+          <TextInput style={styles.input} placeholder="Student Name..." onChangeText={studentListHandler} value={listStudent}/>
+          
+
+        </Col>
+        <Col style={{ backgroundColor: '#00CE9F', height: 200 }}>
+        </Col>
+      <View style={styles.addContainer}>
+        </View>
+        </Grid>
+
+        <View>
+        <FlatList data={classRoster} renderItem={studentData => (
+            <TouchableOpacity onPress={showAlert}>
+                <View style={styles.listedStudents}><Text>{studentData.item}</Text></View>
+            </TouchableOpacity>
+        ) }/>
+          {/* {classRoster.map((student) => )} */}
+      </View>
+      </Content>
+    </Container>
   );
 };
 
 const styles = StyleSheet.create({
   addContainer: {
-    //   alignItems: 'center'
+      alignItems: 'center',
+      justifyContent: 'center',
+      alignItems: 'center'      
   },
   addButton: {
-      height: '20%',
-      marginBottom: '10%'
+      height: '30%',
+      marginLeft: '0%',
+      backgroundColor: "#347905",
+      width: '100%'
+
   },
+ 
   input: {
-      borderBottomWidth: 1
+      borderBottomWidth: 1,
+      fontSize: 22,
+      color: '#347905',
+      width: '100%',
+
   },
   listedStudents: {
       backgroundColor: '#a9dcc6',
