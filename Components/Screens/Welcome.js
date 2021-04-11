@@ -11,7 +11,7 @@ const [viewModalTwo, setViewModalTwo] = useState(false);
     return(
     <View>
         <View style={styles.topContainer}>
-                <Button iconLeft
+                <Button success iconLeft
                 style={styles.topButton} 
                 title="Instructions"
                 onPress={ () => {setViewModal(true)}}>
@@ -20,7 +20,7 @@ const [viewModalTwo, setViewModalTwo] = useState(false);
                     </Icon>
                 </Button>
 
-                <Button iconleft
+                <Button success iconleft
                 style={styles.topButton} 
                 title="Teacher Resources"
                 onPress={ () => {setViewModalTwo(true)}}>
@@ -38,7 +38,7 @@ const [viewModalTwo, setViewModalTwo] = useState(false);
                 <View>
                     <Text style={styles.modalHeader}>Welcome to Comfy Classroom!</Text>
                     <Text style={styles.modalSubHeader}>What's Comfy Classroom?</Text>
-                    <Text style={styles.paragraph}> This app was inspired by my conversations with my sister, an 8th Grade Civics teacher in Chelsea, MA.
+                    <Text style={styles.paragraph}>This app was inspired by conversations with my sister, an 8th Grade Civics teacher in Chelsea, MA.
                         Having told me on numerous times how many of her students are apprehensive about returning to in-person instruciton,
                         I built this app to serve as a go-to dashboard for teachers as their classrooms return to normalacy.
                     </Text>
@@ -49,10 +49,10 @@ const [viewModalTwo, setViewModalTwo] = useState(false);
                      <Text style={styles.modalSubHeader}>Let's Stay Safe and Comfy</Text>
                      <Text style={styles.paragraph}>Check out the resources tab to see current reccomendations from the CDC.
                      Links are provided for information about vaccinations, returning to the classroom, remaining on the lookout for COVID-19 in the classroom environemnt,
-                      and lastly. fostering mental health and emotional wellbeing, for your students and yourself.
+                      and lastly fostering mental health and emotional wellbeing, for your students and yourself.
                       </Text>
                     <Text style={styles.modalSubHeader}>Remember, you got this!</Text>
-                    <Button iconleft
+                    <Button success iconleft
                             onPress = { () => {setViewModal(false)}}
                             style={styles.modalReturnButton}>
                     <Icon name='home'>
@@ -137,11 +137,34 @@ const [viewModalTwo, setViewModalTwo] = useState(false);
                        style={styles.resourceText}
                        onPress={ () => Linking.openURL('https://www.cdc.gov/coronavirus/2019-ncov/daily-life-coping/stress-coping/alcohol-use.html')}>
                            Alcohol and Substance Abuse</Text>
+                           <Text 
+                       style={styles.resourceText}
+                       onPress={ () => Linking.openURL('hhttps://ibcces.org/blog/2020/07/10/stress-teachers-school-staff/')}>
+                           Managing Stress as a Teacher amid Covid-19</Text>
+                           <Text style={styles.modalSubHeader}>Emergency Numbers</Text>
+                           <Text 
+                       style={styles.resourceText}
+                       onPress={ () => Linking.openURL('http://www.suicidepreventionlifeline.org/')}>
+                           National Suicide Prevention Lifeline: 1-800-273-8255</Text>
+                           <Text 
+                       style={styles.resourceText}
+                       onPress={ () => Linking.openURL('https://www.thehotline.org/')}>
+                           National Domestic Violence Hotline: 1-800-799-7233</Text>
+                           <Text 
+                       style={styles.resourceText}
+                       onPress={ () => Linking.openURL('https://www.childhelp.org/hotline/')}>
+                           National Child Abuse Hotline: 1-800-422-4453</Text>
+                           <Text 
+                       style={styles.resourceText}
+                       onPress={ () => Linking.openURL('https://rainn.org/')}>
+                           National Sexual Assault Hotline: 1-800-656-4673</Text>
+                           <Text 
+                       style={styles.resourceText}
+                       onPress={ () => Linking.openURL('https://www.samhsa.gov/find-help/national-helpline')}>
+                           Substance Abuse Hotline: 1-800-662-4357</Text>
                    </TouchableOpacity>
 
-                   
-
-                    <Button iconleft
+                    <Button success iconleft
                     onPress = { () => {setViewModalTwo(false)}}
                     style={styles.modalReturnButton}>
                     <Icon name='home'>
@@ -204,6 +227,7 @@ const styles = StyleSheet.create({
         },
         resourceText: {
         marginLeft: '10%',
+        marginTop: '1%',
         fontWeight: "bold",
         fontSize: 14,
         color: 'blue'

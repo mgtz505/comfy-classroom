@@ -11,13 +11,9 @@ export default function App() {
   //Color Scheme
   // https://icolorpalette.com/color/a9dcc6
   
-const [isOpen, setIsOpen] = useState(false)
+const [viewWelcomeModal, setviewWelcomeModal]=useState(false)
 
-const [displayToggle, setDisplayToggle] = useState(false);
 
-function displayToggleChange() {
-  setDisplayToggle(!displayToggle)
-}
 
   return (
     <Root>
@@ -28,7 +24,7 @@ function displayToggleChange() {
       </View>
         <Welcome />   
       <View style={styles.container}>
-        <StudentAdd props={displayToggle}/>
+        <StudentAdd/>
       </View>
 
     </Container>

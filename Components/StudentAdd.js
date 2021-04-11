@@ -77,7 +77,7 @@ console.log(selectedStudent)
         iconLeft full light onPress={handleButtonPress} 
         style={styles.addButton}>
             <Icon name="person"> 
-            <Text> Add Student to Classroom</Text>
+            <Text style={styles.addButtonText}> Add Student to Classroom</Text>
             </Icon>
           </Button>
           {/* Input Boxes */}
@@ -117,7 +117,7 @@ console.log(selectedStudent)
                 <View key={studentData.item.name} style={styles.listedStudents}>
                 
                   <Text style={styles.renderedText}>{studentData.item.name} </Text>
-                  <Button iconleft style={styles.displayModalButton} onPress={ () =>{
+                  <Button success iconleft style={styles.displayModalButton} onPress={ () =>{
                       setIsAddMode(true)
                       setSelectedStudent(studentData.item.name)
                   }}>
@@ -140,24 +140,30 @@ console.log(selectedStudent)
               return pupil.name === selectedStudent;
             })[0].name
             }</Text>
-            <Text style={styles.modalSubHeader}>Emotional Status: {selectedStudent && classRoster.filter((pupil) => {
+            <Text style={styles.modalSubHeader}>Emotional Status:</Text>
+            <Text style={styles.modalContentStatus}>{selectedStudent && classRoster.filter((pupil) => {
               return pupil.name === selectedStudent;
             })[0].emotion
             }</Text>
-             <Text style={styles.modalSubHeader}>Academic Status: {selectedStudent && classRoster.filter((pupil) => {
+            <Text style={styles.modalSubHeader}>Academic Status:</Text>
+             <Text style={styles.modalContentStatus}>{selectedStudent && classRoster.filter((pupil) => {
               return pupil.name === selectedStudent;
             })[0].academics
             }</Text>
-             <Text style={styles.modalSubHeader}>Covid Status: {selectedStudent && classRoster.filter((pupil) => {
+            <Text style={styles.modalSubHeader}>Covid Status:</Text>
+             <Text style={styles.modalContentStatus}>{selectedStudent && classRoster.filter((pupil) => {
               return pupil.name === selectedStudent;
             })[0].covid
             }</Text>
-            <Text style={styles.modalSubHeader}>Needs academic assistance? {selectedStudent && classRoster.filter((pupil) => {
+            <Text style={styles.modalSubHeader}>Does {selectedStudent && classRoster.filter((pupil) => {
+              return pupil.name === selectedStudent;
+            })[0].name
+            } need assistance? {selectedStudent && classRoster.filter((pupil) => {
               return pupil.name === selectedStudent;
             })[0].assistance 
             }</Text>
 
-            <Button iconLeft style={styles.modalButton} onPress={ () => {
+            <Button success iconLeft style={styles.modalButton} onPress={ () => {
               setSelectedStudent(null)
               setIsAddMode(false)}}>
               <Icon name='home'>
@@ -183,20 +189,28 @@ const styles = StyleSheet.create({
   },
   modalButton: {
     alignSelf: 'center',
-    marginTop: '160%',
+    marginTop: '80%',
     width: '35%',
     },
     modalHeader: {
       marginTop: '15%',
       alignSelf: 'center',
       fontWeight: 'bold',
-      fontSize: 28,
+      fontSize: 36,
       color: "green"
     },
     modalSubHeader: {
       marginLeft: '10%',
       fontWeight: "bold",
-      fontSize: 24
+      fontSize: 22,
+      color: "#347905",
+      marginTop: "10%"
+    },
+    modalContentStatus: {
+      marginLeft: '10%',
+      fontWeight: "bold",
+      fontSize: 20
+
     },
   addContainer: {
       alignItems: 'center',
@@ -205,9 +219,12 @@ const styles = StyleSheet.create({
   addButton: {
       height: '30%',
       // marginLeft: '0%',
-      backgroundColor: "#347905",
+      backgroundColor: "#107d29",
       width: '100%',
       paddingRight: '5%'
+  },
+  addButtonText: {
+    color: 'white'
   },
  
   input: {
@@ -221,26 +238,30 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'flex-start',
       justifyContent: 'center',
-      backgroundColor: '#a9dcc6',
+      backgroundColor: '#107d29',
       borderColor: "#508053",
-      borderWidth: 1,
-      padding: 5,
+      borderWidth: 2,
+      paddingLeft: 5,
     
   },
   assistanceStatus: {
     fontSize: 18,
-    alignSelf: "flex-end",
+    alignSelf: "flex-start",
     flexDirection: "column",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    color: 'white'
+
     
   },
   renderedText: {
-    fontSize: 20,
-    color: 'black',
+    fontSize: 22,
+    color: 'white',
     fontWeight: 'bold'
   },
   displayModalButton: {
     width: '35%',
+    alignSelf: 'flex-end',
+    marginTop: "-5%"
     
   },
   displayModalButtonFont: {
