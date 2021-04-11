@@ -15,7 +15,7 @@ const [isOpen, setIsOpen] = useState(false)
 
 const [displayToggle, setDisplayToggle] = useState(false);
 
-function displayClass() {
+function displayToggleChange() {
   setDisplayToggle(!displayToggle)
 }
 
