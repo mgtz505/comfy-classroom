@@ -17,12 +17,13 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 const StudentAdd = (props) => {
 
 //Handle the Text input for listed student additions:
-//Student Attributes: 
+//Listed Student Attributes (Key Value Pairs for Object): 
 const [listStudent, setlistStudent] = useState("");
 const [listStudentEmotion, setlistStudentEmotion] = useState("");
 const [selectedStudent, setSelectedStudent] = useState("");
 const [listStudentAcademics, setListStudentAcademics] = useState("");
 const [listStudentCovid, setListStudentCovid] = useState("");
+const [listStudentAssistance, setListStudentAssistance]=useState("");
 
 const [classRoster, setClassRoster] = useState([]);
 
@@ -45,14 +46,19 @@ function studentCovidListHandler(corona){
   setListStudentCovid(corona);
 };
 
+function studentAssistanceListHandler(tutoring){
+  setListStudentAssistance(tutoring);
+}
+
 //Handle the use of the add button
 function handleButtonPress(){
   //Store my student information in an object
-    setClassRoster(classRoster => [...classRoster, {key: Math.random(), name: listStudent, emotion: listStudentEmotion, academics: listStudentAcademics, covid: listStudentCovid }]);
+    setClassRoster(classRoster => [...classRoster, {key: Math.random(), name: listStudent, emotion: listStudentEmotion, academics: listStudentAcademics, covid: listStudentCovid, assistance: listStudentAssistance }]);
     setlistStudent("");
     setlistStudentEmotion("");
     setListStudentAcademics("");
     setListStudentCovid("");
+    setListStudentAssistance("");
 };
 
 
@@ -94,6 +100,10 @@ console.log(selectedStudent)
           onChangeText={studentCovidListHandler} 
           value={listStudentCovid}/>
          
+         <TextInput style={styles.input} 
+          placeholder="Requires Assistance?" 
+          onChangeText={studentAssistanceListHandler} 
+          value={listStudentAssistance}/>
 
         </Col>
         <Col style={{ backgroundColor: '#00CE9F', height: 200 }}>
@@ -125,7 +135,7 @@ console.log(selectedStudent)
         animationType="slide"
 >
           <View>
-            
+            {/* Filtered & Rendered Text within Modal: */}
             <Text style={styles.modalHeader}>{selectedStudent && classRoster.filter((pupil) => {
               return pupil.name === selectedStudent;
             })[0].name
@@ -141,6 +151,10 @@ console.log(selectedStudent)
              <Text style={styles.modalSubHeader}>Covid Status: {selectedStudent && classRoster.filter((pupil) => {
               return pupil.name === selectedStudent;
             })[0].covid
+            }</Text>
+            <Text style={styles.modalSubHeader}>Does need academic assistance? {selectedStudent && classRoster.filter((pupil) => {
+              return pupil.name === selectedStudent;
+            })[0].assistance
             }</Text>
 
             <Button iconLeft style={styles.modalButton} onPress={ () => {

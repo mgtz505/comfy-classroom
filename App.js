@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Modal } from 'react-native';
-import {Container, Header, Left, Right, Button, Icon} from 'native-base';
+import {Container, Header, Left, Right, Button, Icon, Root} from 'native-base';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import HeaderBar from './Components/HeaderBar';
 import Welcome from './Components/Screens/Welcome';
@@ -20,6 +20,8 @@ function displayToggleChange() {
 }
 
   return (
+    <Root>
+
     <Container>
       <View>
         <HeaderBar title="Comfy Classroom"/>
@@ -30,6 +32,7 @@ function displayToggleChange() {
       </View>
 
     </Container>
+    </Root>
   );
 }
 
