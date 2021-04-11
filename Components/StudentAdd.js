@@ -20,46 +20,47 @@ const StudentAdd = (props) => {
 //Student Attributes: 
 const [listStudent, setlistStudent] = useState("");
 const [listStudentEmotion, setlistStudentEmotion] = useState("");
-
+const [selectedStudent, setSelectedStudent] = useState("");
+const [listStudentAcademics, setListStudentAcademics] = useState("");
+const [listStudentCovid, setListStudentCovid] = useState("");
 
 const [classRoster, setClassRoster] = useState([]);
-const [studentStatus, setStudentStatus] = useState("");
 
 const [isAddMode, setIsAddMode]=useState(false);
 
 //Handle the use of the student list
 function studentListHandler(name){
     setlistStudent(name);
-  }
+  };
 
 function studentEmotionListHandler(emotion){
-  setlistStudentEmotion(emotion)};
+  setlistStudentEmotion(emotion);
+};
+
+function studentAcadmeicListHandler(academics){
+  setListStudentAcademics(academics);
+};
+
+function studentCovidListHandler(corona){
+  setListStudentCovid(corona);
+};
 
 //Handle the use of the add button
 function handleButtonPress(){
   //Store my student information in an object
-    setClassRoster(classRoster => [...classRoster, {key: Math.random(), name: listStudent, emotion: listStudentEmotion}]);
+    setClassRoster(classRoster => [...classRoster, {key: Math.random(), name: listStudent, emotion: listStudentEmotion, academics: listStudentAcademics, covid: listStudentCovid }]);
+    setlistStudent("");
+    setlistStudentEmotion("");
+    setListStudentAcademics("");
+    setListStudentCovid("");
 };
+
 
 function designateStatus(){
   setStudentStatus()
 }
 
-//Test Functions
-function handleEmotionalStatus(){
-  Alert.alert(
-    "Yolo"
-  )
-  setEmotionalStatus("Anxious")
-
-}
-//Alert Function (on rendered student press)
-// function showAlert() {
-//     Alert.alert(
-//       <Text>"YOLO"</Text>
-//     )
-//   }
-
+console.log(selectedStudent)
 
   return (
     <Container>
@@ -79,9 +80,19 @@ function handleEmotionalStatus(){
           onChangeText={studentListHandler} 
           value={listStudent}/>
            <TextInput style={styles.input} 
-          placeholder="Emotions" 
+          placeholder="Emotions..." 
           onChangeText={studentEmotionListHandler} 
           value={listStudentEmotion}/>
+
+            <TextInput style={styles.input} 
+          placeholder="Academic Status..." 
+          onChangeText={studentAcadmeicListHandler} 
+          value={listStudentAcademics}/>
+
+          <TextInput style={styles.input} 
+          placeholder="COVID-19 Status..." 
+          onChangeText={studentCovidListHandler} 
+          value={listStudentCovid}/>
          
 
         </Col>
@@ -96,12 +107,12 @@ function handleEmotionalStatus(){
             <TouchableOpacity >
                 <View key={studentData.item.name} style={styles.listedStudents}>
                 
-                  <Text style={styles.renderedText}>{studentData.item.name} is feeling {studentData.item.emotion} </Text>
+                  <Text style={styles.renderedText}>{studentData.item.name} </Text>
                   <Button iconleft style={styles.displayModalButton} onPress={ () =>{
                       setIsAddMode(true)
-                      console.log(classRoster)
+                      setSelectedStudent(studentData.item.name)
                   }}>
-                    <Text style={styles.displayModalButtonFont}>Set Status <Icon name="school"> </Icon></Text>
+                    <Text style={styles.displayModalButtonFont}>See Details <Icon name="school"> </Icon></Text>
                   </Button>
                 </View>
             </TouchableOpacity>
@@ -114,9 +125,27 @@ function handleEmotionalStatus(){
         animationType="slide"
 >
           <View>
-            <Text style={styles.modalHeader}>{classRoster[0].name}</Text>
+            
+            <Text style={styles.modalHeader}>{selectedStudent && classRoster.filter((pupil) => {
+              return pupil.name === selectedStudent;
+            })[0].name
+            }</Text>
+            <Text style={styles.modalSubHeader}>Emotional Status: {selectedStudent && classRoster.filter((pupil) => {
+              return pupil.name === selectedStudent;
+            })[0].emotion
+            }</Text>
+             <Text style={styles.modalSubHeader}>Academic Status: {selectedStudent && classRoster.filter((pupil) => {
+              return pupil.name === selectedStudent;
+            })[0].academics
+            }</Text>
+             <Text style={styles.modalSubHeader}>Covid Status: {selectedStudent && classRoster.filter((pupil) => {
+              return pupil.name === selectedStudent;
+            })[0].covid
+            }</Text>
 
-            <Button iconLeft style={styles.modalButton} onPress={ () => setIsAddMode(false)}>
+            <Button iconLeft style={styles.modalButton} onPress={ () => {
+              setSelectedStudent(null)
+              setIsAddMode(false)}}>
               <Icon name='home'>
               <Text> Home</Text>
               </Icon>
@@ -140,12 +169,19 @@ const styles = StyleSheet.create({
   },
   modalButton: {
     alignSelf: 'center',
-    marginTop: '180%',
+    marginTop: '160%',
     width: '35%',
     },
     modalHeader: {
-      marginTop: '10%',
-      marginLeft: '20%'
+      marginTop: '15%',
+      marginLeft: '20%',
+      fontWeight: 'bold',
+      fontSize: 28
+    },
+    modalSubHeader: {
+      marginLeft: '20%',
+      fontWeight: "bold",
+      fontSize: 18
     },
   addContainer: {
       alignItems: 'center',
