@@ -7,7 +7,6 @@ const Welcome = props => {
 //Control the individual modals using State:
 const [viewModal, setViewModal] = useState(false);
 const [viewModalTwo, setViewModalTwo] = useState(false);
-const [showToast, setShowToast] = useState(false);
 
     return(
     <View>
@@ -17,7 +16,7 @@ const [showToast, setShowToast] = useState(false);
                 title="Instructions"
                 onPress={ () => {setViewModal(true)}}>
                     <Icon name='information'>
-                        <Text style={styles.buttonText}>Instructions</Text>
+                        <Text style={styles.buttonText}>Guide</Text>
                     </Icon>
                 </Button>
 
@@ -37,6 +36,22 @@ const [showToast, setShowToast] = useState(false);
             animationType="slide"
             style={styles.modalContainer}>
                 <View>
+                    <Text style={styles.modalHeader}>Welcome to Comfy Classroom!</Text>
+                    <Text style={styles.modalSubHeader}>What's Comfy Classroom?</Text>
+                    <Text style={styles.paragraph}> This app was inspired by my conversations with my sister, an 8th Grade Civics teacher in Chelsea, MA.
+                        Having told me on numerous times how many of her students are apprehensive about returning to in-person instruciton,
+                        I built this app to serve as a go-to dashboard for teachers as their classrooms return to normalacy.
+                    </Text>
+                    <Text style={styles.modalSubHeader}>Let's Get to Know the Class</Text>
+                    <Text style={styles.paragraph}>Begin by adding students to your Classroom. Feel free to be concise or wordy with your notes -
+                     they'll all be visible when you select a student to view. Students requiring acadmeic assistance will have a special status visible on their profile.</Text>
+
+                     <Text style={styles.modalSubHeader}>Let's Stay Safe and Comfy</Text>
+                     <Text style={styles.paragraph}>Check out the resources tab to see current reccomendations from the CDC.
+                     Links are provided for information about vaccinations, returning to the classroom, remaining on the lookout for COVID-19 in the classroom environemnt,
+                      and lastly. fostering mental health and emotional wellbeing, for your students and yourself.
+                      </Text>
+                    <Text style={styles.modalSubHeader}>Remember, you got this!</Text>
                     <Button iconleft
                             onPress = { () => {setViewModal(false)}}
                             style={styles.modalReturnButton}>
@@ -69,7 +84,6 @@ const [showToast, setShowToast] = useState(false);
                         onPress ={ () => Linking.openURL('https://www.cdc.gov/coronavirus/2019-ncov/vaccines/safety/vsafe.html')}>
                             Report Vaccine Side-Effects via V-Safe
                         </Text>
-           
                    </TouchableOpacity>
 
                    <Text style={styles.modalSubHeader}>Returning to the Classroom</Text>
@@ -173,23 +187,29 @@ const styles = StyleSheet.create({
         },
         modalHeader: {
             marginTop: '15%',
-            marginLeft: '20%',
+            alignSelf: 'center',
             fontWeight: 'bold',
             fontSize: 28
         },
         modalSubHeader: {
-        marginLeft: '20%',
+        marginLeft: '10%',
+        marginTop: '5%',
         fontWeight: "bold",
+        fontSize: 22,
+        },
+        paragraph: {
         fontSize: 18,
+        marginLeft: '10%',
+        marginRight: '10%'
         },
         resourceText: {
-        marginLeft: '20%',
+        marginLeft: '10%',
         fontWeight: "bold",
         fontSize: 14,
         color: 'blue'
         },
         modalReturnButton: {
-        marginTop: '100%',
+        marginTop: '10%',
         alignSelf: 'center'
         },
     

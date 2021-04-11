@@ -76,8 +76,8 @@ console.log(selectedStudent)
         <Button style={styles.addButton} 
         iconLeft full light onPress={handleButtonPress} 
         style={styles.addButton}>
-            <Icon name="add"> 
-            <Text>Add Student</Text>
+            <Icon name="person"> 
+            <Text> Add Student to Classroom</Text>
             </Icon>
           </Button>
           {/* Input Boxes */}
@@ -101,13 +101,12 @@ console.log(selectedStudent)
           value={listStudentCovid}/>
          
          <TextInput style={styles.input} 
-          placeholder="Requires Assistance?" 
+          placeholder="Requires Assistance? (Omit if No)" 
           onChangeText={studentAssistanceListHandler} 
           value={listStudentAssistance}/>
 
         </Col>
-        <Col style={{ backgroundColor: '#00CE9F', height: 200 }}>
-        </Col>
+       
       <View style={styles.addContainer}>
         </View>
         </Grid>
@@ -124,6 +123,7 @@ console.log(selectedStudent)
                   }}>
                     <Text style={styles.displayModalButtonFont}>See Details <Icon name="school"> </Icon></Text>
                   </Button>
+                  <Text style={styles.assistanceStatus}>{studentData.item.assistance ? "Needs Assistance" : "" }</Text>
                 </View>
             </TouchableOpacity>
         )}/>
@@ -152,9 +152,9 @@ console.log(selectedStudent)
               return pupil.name === selectedStudent;
             })[0].covid
             }</Text>
-            <Text style={styles.modalSubHeader}>Does need academic assistance? {selectedStudent && classRoster.filter((pupil) => {
+            <Text style={styles.modalSubHeader}>Needs academic assistance? {selectedStudent && classRoster.filter((pupil) => {
               return pupil.name === selectedStudent;
-            })[0].assistance
+            })[0].assistance 
             }</Text>
 
             <Button iconLeft style={styles.modalButton} onPress={ () => {
@@ -188,19 +188,19 @@ const styles = StyleSheet.create({
     },
     modalHeader: {
       marginTop: '15%',
-      marginLeft: '20%',
+      alignSelf: 'center',
       fontWeight: 'bold',
-      fontSize: 28
+      fontSize: 28,
+      color: "green"
     },
     modalSubHeader: {
-      marginLeft: '20%',
+      marginLeft: '10%',
       fontWeight: "bold",
-      fontSize: 18
+      fontSize: 24
     },
   addContainer: {
       alignItems: 'center',
       justifyContent: 'center',
-      alignItems: 'center'      
   },
   addButton: {
       height: '30%',
@@ -226,17 +226,13 @@ const styles = StyleSheet.create({
       borderWidth: 1,
       padding: 5,
     
-
   },
-  listedMediumStudents: {
-    backgroundColor: 'yellow',
-    borderWidth: 1,
-    padding: 5
-  },
-  ListedConcernStudents: {
-    backgroundColor: 'red',
-    borderWidth: 1,
-    padding: 5
+  assistanceStatus: {
+    fontSize: 18,
+    alignSelf: "flex-end",
+    flexDirection: "column",
+    fontWeight: "bold"
+    
   },
   renderedText: {
     fontSize: 20,
