@@ -49,7 +49,7 @@ Given my interest in purusing a role in product management, I chose to approach 
 Obviously my focus was still on engineering this application, but I chose to monitor my progress with the project, and in a somewhat contrived manner, held myself accountable as a PM might do for their team.
 Following discussion of my code I've prepared some brief thoughts regarding my experience "managing" this product. For more detail thoughts, feel free to look at my Dev.to post.
 
-###Determining what to build and which features to prioiritize:
+### Determining what to build and which features to prioiritize:
 To the extent possible, I wanted this project's ultimate outcome to be delivery of a product that satisfied users' needs. How did I identify these needs?
 Prior to beginning design / development of my application, I leaned on my network to solicit input from actual teachers. I [used SurveyMonkey](https://www.surveymonkey.com/r/39LPKG7) with the intention of assesing the following:
 - Can I identify my userbase? Do survey respondants intend to use my app, and with what frequency? What would inhibit usage?
