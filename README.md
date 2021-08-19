@@ -37,7 +37,7 @@ In Welcome.js, two buttons at the top of the home page allow the user to access 
 <img width="1159" alt="Screen Shot 2021-04-12 at 9 48 04 AM" src="https://user-images.githubusercontent.com/63027187/114405162-65b7fb80-9b74-11eb-8241-04af23e85b93.png">
 
 
-# Developing Comfy Classroom - An Exploration of the role of a PM
+# Developing Comfy Classroom 
 In the below section I document the development process for this application. 
 
 ## What was the inspiration for this app? What purpose does it serve?
